@@ -28,7 +28,7 @@ order by TotalDeathCount desc
 -- 3.
 
 
-Select Location, Population, MAX(total_cases) as HighestInfectionCount,  Max((total_cases * 100.0 /population)) as PercentPopulationInfected
+Select Location, Population, MAX(total_cases) as HighestInfectionCount,  Max((cast(total_cases as float) /population)) * 100 as PercentPopulationInfected
 From PortfolioProj..CovidDeaths
 Group by Location, Population
 order by PercentPopulationInfected desc
@@ -37,7 +37,7 @@ order by PercentPopulationInfected desc
 -- 4.
 
 
-Select Location, Population,date, MAX(total_cases) as HighestInfectionCount,  Max((total_cases * 100.0 /population)) as PercentPopulationInfected
+Select Location, Population,date, MAX(total_cases) as HighestInfectionCount,  Max((cast(total_cases as float) /population)) * 100 as PercentPopulationInfected
 From PortfolioProj..CovidDeaths
 Group by Location, Population, date
 order by PercentPopulationInfected desc
